@@ -14,6 +14,7 @@ namespace BusinessLayer.Helper
 
         public AutoMapperHelper()
         {
+            //automapper
             CreateMap<UserLoginModel, UserLogin>();
             CreateMap<UserLogin, UserLoginModel>();
 
