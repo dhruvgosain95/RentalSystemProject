@@ -1,0 +1,24 @@
+﻿@model RentalSystemModels.ProductModel
+
+@{
+                /**/
+ViewBag.Title = "ProductDetails";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><strong>@Model.ProductName</strong></h2>
+
+<hr />
+
+<div class="card" style="width:400px">
+    
+    <div class="card-body">
+        <h4 class="card-title" style="font:italic"><strong>@Model.ProductName</strong></h4>
+        <p class="card-text"><strong>@Model.ProductDescription</strong></p>
+        <strong>Rent Start Date:</strong><p class="card-text">Model.RentStartDate</p>
+        <strong>Rent End Date:</strong><p class="card-text">@Model.RentEndDate</p>
+
+    </div>
+</div>
+
+

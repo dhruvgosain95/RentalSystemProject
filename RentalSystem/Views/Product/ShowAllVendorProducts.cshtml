@@ -1,0 +1,119 @@
+﻿@model IEnumerable<RentalSystemModels.ProductModel>
+
+@{
+                /**/
+
+                ViewBag.Title = "ShowAllVendorProducts";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Convert.ToInt32(Session["RoleId"]) != 1)
+{
+    <h2>No Data Found !!</h2>
+    <hr />
+    <div>
+        @Html.ActionLink("Post Your Ad Here", "CreateNewProduct", "Product", null, new { @class = "btn btn-primary" })
+    </div>
+}
+else
+{
+
+
+    <h2><strong><i class="fab fa-adversal"></i>Rent a Car</strong></h2>
+    <div>
+        @Html.ActionLink("Post Your Ad Here", "CreateNewProduct", "Product", null, new { @class = "btn btn-primary" })
+    </div>
+    <br />
+    <br />
+
+    <table id="products" class="table table-bordered table-hover">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image1</th>
+                <th>Image2</th>
+                <th>Image3</th>
+                <th>Price</th>
+                <th>Description</th>
+
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(@item.ProductName, "ProductDetails", "Product", new { id = item.Id }, null)</td>
+                    <td><img src=@Url.Content(@item.ProductImage1).Insert(0,"..\\") width="200" height="100" /></td>
+                    <td><img src=@Url.Content(@item.ProductImage2).Insert(0,"..\\") width="200" height="100" /></td>
+                    <td><img src=@Url.Content(@item.ProductImage3).Insert(0,"..\\") width="200" height="100" /></td>
+                    <td>@item.ProductUnitPrice</td>
+                    <td>@item.ProductDescription</td>
+
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    @*@section scripts{
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script>
+
+        $(document).ready(function () {
+            
+
+
+            $("#products").DataTable({
+                "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "All"]],
+                "sPaginationType": "simple",
+                ajax: {
+                    type: "GET",
+                    url: "http://localhost:58150/api/products/GetAllProductsOfVendor/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "productName",
+                        render: function (data, type, product) {
+                            return "<a href='/Product/ProductDetails/" + product.id + "'>" + data + "</a> ";
+                        }
+
+                    },
+
+                    {
+                        data: "productImage1",
+                        render: function (data) {
+                            return "<img src='../" + data +"' width='200' height='100' />";
+                        }
+                    },
+                    {
+                        data: "productImage2",
+                        render: function (data) {
+                            return "<img src='../"+ data +"' width='200' height='100' />";
+                        }
+                    },
+                    {
+                        data: "productImage3",
+                        render: function (data) {
+                            return "<img src='../" + data + "' width='200' height='100' />";
+                        }
+                    },
+                    {
+                        data:"productUnitPrice"
+                    },
+                    {
+                        data:"productDescription"
+                    }
+
+                ]
+            });
+        });
+        </script>
+    }*@
+}
+
+
+

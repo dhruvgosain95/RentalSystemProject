@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RentalSystemModels.ProductModel>
+
+
+@{
+    ViewBag.Title = "AdminControl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<h2><strong><i class="fas fa-comment-alt"></i> &nbsp;Admin Dashboard</strong></h2>
+<hr />
+
+<div>
+    @Html.ActionLink("View Feedbacks", "Create", "Feedback", null, new { @class = "btn btn-primary" })
+</div>
+
+<div>
+    @Html.ActionLink("Edit Products", "Create", "Feedback", null, new { @class = "btn btn-primary" })
+</div>
+
+
+
+
+<br />
+<br />
+
+<table id="products" class="table table-bordered table-hover">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image1</th>
+            <th>Image2</th>
+            <th>Image3</th>
+            <th>Price</th>
+            <th>Description</th>
+
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(@item.ProductName, "ProductDetails", "Product", new { id = item.Id }, null)</td>
+                <td><img src=@Url.Content(@item.ProductImage1) width="200" height="100" /></td>
+                <td><img src=@Url.Content(@item.ProductImage2) width="200" height="100" /></td>
+                <td><img src=@Url.Content(@item.ProductImage3) width="200" height="100" /></td>
+                <td>@item.ProductUnitPrice</td>
+                <td>@item.ProductDescription</td>
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
